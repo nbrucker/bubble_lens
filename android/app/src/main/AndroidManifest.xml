@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.coborg">
+    package="com.example.bubble_lens">
    <application
-        android:label="coborg"
+        android:label="bubble_lens"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
