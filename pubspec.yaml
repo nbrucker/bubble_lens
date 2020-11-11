@@ -17,35 +17,3 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
-
-  assets:
-    - assets/badoo.png
-    - assets/behance.png
-    - assets/deviantart.png
-    - assets/dribbble.png
-    - assets/dropbox.png
-    - assets/facebook.png
-    - assets/flickr.png
-    - assets/foursquare.png
-    - assets/google-plus.png
-    - assets/instagram.png
-    - assets/line.png
-    - assets/linkedin.png
-    - assets/myspace.png
-    - assets/path.png
-    - assets/pinterest.png
-    - assets/quora.png
-    - assets/skype.png
-    - assets/snapchat.png
-    - assets/soundcloud.png
-    - assets/spotify.png
-    - assets/swarm.png
-    - assets/telegram.png
-    - assets/tumblr.png
-    - assets/twitter.png
-    - assets/viber.png
-    - assets/vimeo.png
-    - assets/vine.png
-    - assets/whatsapp.png
-    - assets/yelp.png
-    - assets/youtube.png
