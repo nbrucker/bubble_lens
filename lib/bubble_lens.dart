@@ -9,6 +9,7 @@ class BubbleLens extends StatefulWidget {
 	final double paddingX;
 	final double paddingY;
 	final Duration duration;
+	final Radius radius;
 
 	const BubbleLens({
 		Key key,
@@ -18,7 +19,8 @@ class BubbleLens extends StatefulWidget {
 		this.size = 100,
 		this.paddingX = 10,
 		this.paddingY = 0,
-		this.duration = const Duration(milliseconds: 100)
+		this.duration = const Duration(milliseconds: 100),
+		this.radius = const Radius.circular(999)
 	});
 
 	@override
@@ -124,7 +126,7 @@ class BubbleLensState extends State<BubbleLens> {
 								child: Transform.scale(
 									scale: scale,
 									child: ClipRRect(
-										borderRadius: BorderRadius.circular(999),
+										borderRadius: BorderRadius.all(widget.radius),
 										child: Container(
 											width: widget.size,
 											height: widget.size,
