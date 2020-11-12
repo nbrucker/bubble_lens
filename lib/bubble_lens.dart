@@ -6,7 +6,8 @@ class BubbleLens extends StatefulWidget {
 	final double height;
 	final List<Widget> widgets;
 	final double size;
-	final double padding;
+	final double paddingX;
+	final double paddingY;
 	final Duration duration;
 
 	const BubbleLens({
@@ -15,7 +16,8 @@ class BubbleLens extends StatefulWidget {
 		@required this.height,
 		@required this.widgets,
 		this.size = 100,
-		this.padding = 10,
+		this.paddingX = 10,
+		this.paddingY = 0,
 		this.duration = const Duration(milliseconds: 100)
 	});
 
@@ -50,12 +52,12 @@ class BubbleLensState extends State<BubbleLens> {
 		_lastX = 0;
 		_lastY = 0;
 		_steps = [
-			[-(widget.size / 2) + -(widget.padding / 2), -widget.size],
-			[-widget.size + -widget.padding, 0],
-			[-(widget.size / 2) + -(widget.padding / 2), widget.size],
-			[(widget.size / 2) + (widget.padding / 2), widget.size],
-			[widget.size + widget.padding, 0],
-			[(widget.size / 2) + (widget.padding / 2), -widget.size],
+			[-(widget.size / 2) + -(widget.paddingX / 2), -widget.size + -widget.paddingY],
+			[-widget.size + -widget.paddingX, 0],
+			[-(widget.size / 2) + -(widget.paddingX / 2), widget.size + widget.paddingY],
+			[(widget.size / 2) + (widget.paddingX / 2), widget.size + widget.paddingY],
+			[widget.size + widget.paddingX, 0],
+			[(widget.size / 2) + (widget.paddingX / 2), -widget.size + -widget.paddingY],
 		];
 	}
 
@@ -91,8 +93,8 @@ class BubbleLensState extends State<BubbleLens> {
 						if (index == 0) {
 							left = _offsetX;
 							top = _offsetY;
-						} else if ((index - 1) == _total) {
-							left = (_counter + 1) * (widget.size + widget.padding) + _offsetX;
+						} else if (index - 1 == _total) {
+							left = (_counter + 1) * (widget.size + widget.paddingX) + _offsetX;
 							top = _offsetY;
 							_lastTotal = _total;
 							_counter++;
