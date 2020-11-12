@@ -4,7 +4,7 @@
 A reproduction of the Apple Watch UI animation
 
 ## Example
-![Example](https://raw.githubusercontent.com/nbrucker/bubble_lens/tree/main/example/example.gif)
+![Example](https://github.com/nbrucker/bubble_lens/blob/main/example/example.gif?raw=true)
 
 ## Usage
 
