@@ -3,6 +3,10 @@
 
 A reproduction of the Apple Watch UI animation
 
+## Example
+
+![Example](https://media.giphy.com/media/Api2vaZS5jxyyKsJBj/giphy.gif)
+
 ## Usage
 
 ### Import the package
