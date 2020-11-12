@@ -1,7 +1,8 @@
 name: bubble_lens
-description: Apple Watch UI animation
+description: Reproduction of the Apple Watch UI animation
+homepage: https://github.com/nbrucker/bubble_lens
 
-version: 1.0.0+1
+version: 1.0.0
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
