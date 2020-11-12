@@ -2,18 +2,13 @@ name: bubble_lens
 description: Flutter customizable reproduction of the Apple Watch UI animation
 homepage: https://github.com/nbrucker/bubble_lens
 
-version: 1.0.2
+version: 1.0.3
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
   flutter:
-    sdk: flutter
-  cupertino_icons: ^1.0.0
-
-dev_dependencies:
-  flutter_test:
     sdk: flutter
 
 flutter:

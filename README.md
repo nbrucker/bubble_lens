@@ -30,13 +30,30 @@ BubbleLens(
 );
 ```
 
+## Required Parameters
+| Prop          | Type          | Default                       | Description                           |
+|---------------|---------------|-------------------------------|---------------------------------------|
+| width         | double        | N/A                           | Width of the container.               |
+| height        | double        | N/A                           | Height of the container.              |
+| widgets       | List<Widget>  | N/A                           | List of widgets to display.           |
+## Optional Parameters
+| Prop          | Type          | Default                       | Description                           |
+|---------------|---------------|-------------------------------|---------------------------------------|
+| size          | double        | 100                           | Maximum size of a widget.             |
+| paddingX      | double        | 10                            | Horizontal padding between widgets.   |
+| paddingY      | double        | 0                             | Vertical padding between widgets.     |
+| duration      | Duration      | Duration(milliseconds: 100)   | Animation's duration.                 |
+| radius        | Radius        | Radius.circular(999)          | Widget's radius.                      |
+| highRatio     | double        | 0                             | High ratio, should be >= 0.           |
+| lowRatio      | double        | 0                             | Low ratio, should be >= 0.            |
+
 ## Example
 
 Find the example wiring in the [Bubble Lens example application](https://github.com/nbrucker/bubble_lens/tree/main/example/lib/main.dart).
 
 ## Details
 
-See the [bubble_lens.dart](https://github.com/nbrucker/bubble_lens/blob/main/bubble_lens.dart) for more details.
+See the [bubble_lens.dart](https://github.com/nbrucker/bubble_lens/blob/main/lib/bubble_lens.dart) for more details.
 
 ## Issues and feedback
 

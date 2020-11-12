@@ -10,6 +10,8 @@ class BubbleLens extends StatefulWidget {
 	final double paddingY;
 	final Duration duration;
 	final Radius radius;
+	final double highRatio;
+	final double lowRatio;
 
 	const BubbleLens({
 		Key key,
@@ -20,7 +22,9 @@ class BubbleLens extends StatefulWidget {
 		this.paddingX = 10,
 		this.paddingY = 0,
 		this.duration = const Duration(milliseconds: 100),
-		this.radius = const Radius.circular(999)
+		this.radius = const Radius.circular(999),
+		this.highRatio = 0,
+		this.lowRatio = 0
 	});
 
 	@override
@@ -114,7 +118,7 @@ class BubbleLensState extends State<BubbleLens> {
 						_lastY = top;
 						double distance = sqrt(pow(_middleX - (left + widget.size / 2), 2) + pow(_middleY - (top + widget.size / 2), 2));
 						double size = widget.size / max(distance / widget.size, 1);
-						double scale = max(0, min(1, (size / widget.size * 1.5) - 0.5));
+						double scale = max(0, min(1, (size / widget.size * (1 + widget.highRatio + widget.lowRatio)) - widget.lowRatio));
 						return AnimatedPositioned(
 							duration: widget.duration,
 							top: top,
