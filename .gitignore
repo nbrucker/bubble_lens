@@ -18,9 +18,3 @@ doc/api/
 .vscode
 *.iml
 .metadata
-
-# Example
-example/*
-!example/lib/main.dart
-!example/pubspec.yaml
-!example/example.gif

@@ -1,6 +1,8 @@
 name: bubble_lens_example
 description: Demonstrates how to use the bubble_lens package.
 
+publish_to: 'none'
+
 version: 1.0.0+1
 
 environment:
@@ -11,6 +13,10 @@ dependencies:
     sdk: flutter
   bubble_lens:
     path: ../
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
 
 flutter:
   uses-material-design: true
