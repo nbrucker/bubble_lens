@@ -25,10 +25,10 @@ class MyHomePage extends StatelessWidget {
 				child: Container(
 					color: Colors.black,
 					child: BubbleLens(
-						width: 300,
-						height: 300,
+						width: MediaQuery.of(context).size.width,
+						height: MediaQuery.of(context).size.height,
 						widgets: [
-							for (var i = 0; i < 7; i++)
+							for (var i = 0; i < 100; i++)
 								Container(
 									width: 100,
 									height: 100,

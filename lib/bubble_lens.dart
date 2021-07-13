@@ -14,10 +14,10 @@ class BubbleLens extends StatefulWidget {
 	final double lowRatio;
 
 	const BubbleLens({
-		Key key,
-		@required this.width,
-		@required this.height,
-		@required this.widgets,
+		Key? key,
+		required this.width,
+		required this.height,
+		required this.widgets,
 		this.size = 100,
 		this.paddingX = 10,
 		this.paddingY = 0,
@@ -25,23 +25,23 @@ class BubbleLens extends StatefulWidget {
 		this.radius = const Radius.circular(999),
 		this.highRatio = 0,
 		this.lowRatio = 0
-	});
+	}) : super(key: key);
 
 	@override
 	BubbleLensState createState() => BubbleLensState();
 }
 
 class BubbleLensState extends State<BubbleLens> {
-	double _middleX;
-	double _middleY;
-	double _offsetX;
-	double _offsetY;
-	double _lastX;
-	double _lastY;
-	List _steps;
-	int _counter;
-	int _total;
-	int _lastTotal;
+	double _middleX = 0;
+	double _middleY = 0;
+	double _offsetX = 0;
+	double _offsetY = 0;
+	double _lastX = 0;
+	double _lastY = 0;
+	List _steps = [];
+	int _counter = 0;
+	int _total = 0;
+	int _lastTotal = 0;
 
 	double _minLeft = double.infinity;
 	double _maxLeft = double.negativeInfinity;
