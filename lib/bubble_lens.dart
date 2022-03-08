@@ -1,6 +1,20 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+/// _Children is used since [ValueListenableBuilder]
+/// only accept child that is not rebuild as a single Widget.
+class _Children extends Widget {
+  final List<Widget> children;
+  const _Children({
+    required this.children,
+  });
+
+  @override
+  Element createElement() {
+    throw UnimplementedError();
+  }
+}
+
 class BubbleLens extends StatefulWidget {
   final double width;
   final double height;
@@ -32,10 +46,11 @@ class BubbleLens extends StatefulWidget {
 }
 
 class BubbleLensState extends State<BubbleLens> {
+  late final ValueNotifier<Offset> offsetNotifer;
+
   double _middleX = 0;
   double _middleY = 0;
-  double _offsetX = 0;
-  double _offsetY = 0;
+
   double _lastX = 0;
   double _lastY = 0;
   List _steps = [];
@@ -53,8 +68,7 @@ class BubbleLensState extends State<BubbleLens> {
     super.initState();
     _middleX = widget.width / 2;
     _middleY = widget.height / 2;
-    _offsetX = _middleX - widget.size / 2;
-    _offsetY = _middleY - widget.size / 2;
+    offsetNotifer = ValueNotifier(Offset(_middleX - widget.size / 2, _middleY - widget.size / 2));
     _lastX = 0;
     _lastY = 0;
     _steps = [
@@ -68,39 +82,65 @@ class BubbleLensState extends State<BubbleLens> {
   }
 
   @override
+  void dispose() {
+    offsetNotifer.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    _counter = 0;
-    _total = 0;
-    return Container(
+    return SizedBox(
       width: widget.width,
       height: widget.height,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onPanUpdate: (details) {
+          double _offsetX = offsetNotifer.value.dx;
+          double _offsetY = offsetNotifer.value.dy;
           double newOffsetX = max(_minLeft, min(_maxLeft, _offsetX + details.delta.dx));
           double newOffsetY = max(_minTop, min(_maxTop, _offsetY + details.delta.dy));
           if (newOffsetX != _offsetX || newOffsetY != _offsetY) {
-            setState(() {
-              _offsetX = newOffsetX;
-              _offsetY = newOffsetY;
-            });
+            offsetNotifer.value = Offset(newOffsetX, newOffsetY);
           }
         },
-        child: Stack(
-          children: widget.widgets.map(
-            (item) {
-              return buildChild(item);
-            },
-          ).toList(),
+        child: ValueListenableBuilder<Offset>(
+          valueListenable: offsetNotifer,
+          child: buildChildren(),
+          builder: (context, value, child) {
+            child as _Children;
+
+            _counter = 0;
+            _total = 0;
+
+            return Stack(
+              children: List.generate(child.children.length, (index) {
+                Widget item = child.children[index];
+                return buildChild(index, item);
+              }),
+            );
+          },
         ),
       ),
     );
   }
 
-  AnimatedPositioned buildChild(Widget child) {
-    int index = widget.widgets.indexOf(child);
+  Widget buildChildren() {
+    return _Children(
+      children: widget.widgets.map((e) {
+        return ClipRRect(
+          borderRadius: BorderRadius.all(widget.radius),
+          child: SizedBox(width: widget.size, height: widget.size, child: e),
+        );
+      }).toList(),
+    );
+  }
+
+  Widget buildChild(int index, Widget child) {
     double left;
     double top;
+
+    double _offsetX = offsetNotifer.value.dx;
+    double _offsetY = offsetNotifer.value.dy;
 
     if (index == 0) {
       left = _offsetX;
@@ -138,14 +178,7 @@ class BubbleLensState extends State<BubbleLens> {
         height: widget.size,
         child: Transform.scale(
           scale: scale,
-          child: ClipRRect(
-            borderRadius: BorderRadius.all(widget.radius),
-            child: Container(
-              width: widget.size,
-              height: widget.size,
-              child: child,
-            ),
-          ),
+          child: child,
         ),
       ),
     );
